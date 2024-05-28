@@ -18,4 +18,10 @@ for(i = 1; i < numeroExpoente; i++){
 
 }
 
+if (numeroExpoente == 0){
+
+    alert('O resultado deu 1')
+
+}
+
 alert(`O resultado deu `+ resultadoEquacao)
