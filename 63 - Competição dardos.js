@@ -1,27 +1,43 @@
-//todo: Fazer um programa no qual o usuário deve digitar um número e o expoente dele. Mostrar na tela o resultado do cálculo. (Não é permitido usar o operador **).
+//todo: Em uma competição de dardos, os competidores se classificam para a próxima fase caso consigam 75% ou mais da pontuação total, que é 60 pontos. Caso consiga 50% ou mais, porém abaixo de 75%, vai para a repescagem. Menos que isso, é eliminado. Cada arremesso pode marcar de 0 a 10 pontos, dependendo da precisão. Criar um programa para armazenar a pontuação dos 6 arremessos de um competidor e ao final mostrar uma mensagem com sua pontuação, seu desempenho (percentual) e se ele está classificado, se foi para a repescagem ou se está desclassificado.
 
-let numeroBase, numeroExpoente, resultadoEquacao
+let somaDardos = 0, percentualRepescagem = 50, percentualClassificado = 75, pontuacaoMaxima = 60, percentualJogador
+let dardoJogado
 
-do{
-numeroBase = Number(prompt(`Digite o número base`))
-numeroExpoente = Number(prompt(`Digite o número expoente`))
+for(i=0; i < 6; i++){
 
-}while(isNaN(numeroBase) || isNaN(numeroExpoente))
+    do{
 
-resultadoEquacao = numeroBase
+        dardoJogado = Math.floor(Number(prompt(`Digite o valor do arremeso do ${i+1}º dardo (0 a 10 pontos)`)))
 
-for(i = 1; i < numeroExpoente; i++){
+    }while(isNaN(dardoJogado) || dardoJogado < 0 || dardoJogado > 10)
 
-    resultadoEquacao *= numeroBase
-    console.log(resultadoEquacao)
-
+        somaDardos += dardoJogado
 
 }
 
-if (numeroExpoente == 0){
+percentualJogador = somaDardos * 100 / pontuacaoMaxima
 
-    alert('O resultado deu 1')
+alert(`Sua pontuação foi ${somaDardos} pontos de 60 pontos!\n\nSeu percentual de pontos é ${percentualJogador}%`)
+
+switch(true){
+
+    case percentualJogador >= percentualClassificado:
+
+        alert(`Você foi classificado!`)
+        break
+    
+    case percentualJogador >= percentualRepescagem:
+
+        alert(`Você foi para a repescagem`)
+        break
+
+    case percentualJogador < percentualRepescagem:
+
+        alert('Você foi desclassificado')
+        break
+
+    default:
+
+        alert('ERROR 404')
 
 }
-
-alert(`O resultado deu `+ resultadoEquacao)
